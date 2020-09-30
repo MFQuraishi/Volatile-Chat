@@ -3,7 +3,7 @@ const socket = io();
 function createRoom(){
   let roomName = document.getElementById("roomName").value;
   if(roomName === ""){
-    alert("no value");
+    alert("Enter Nickname");
   }
   else{
     console.log(`new room will be created by the name ${roomName}`);
@@ -34,6 +34,11 @@ socket.on("load_chat_page",(page, message)=>{
   if(message === "YES"){
     document.body.innerHTML = "";
     document.body.innerHTML = page;
+
+    let s = document.getElementsByClassName("chats")[0];
+    s.addEventListener("wheel",()=>{
+      s.scrollBy(0,event.deltaY*10);
+    });
   }
   else{
     alert(message);

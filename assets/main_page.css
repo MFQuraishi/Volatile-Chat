@@ -1,17 +1,27 @@
 *{
     margin: 0;
     padding: 0;
-    font-family: monospace
+    font-family: monospace;
+}
+
+.pseudo-body1{
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: monospace;
+  background-color: black;
 }
 
 .container{
-  display: flex;
+  background-color: grey;
+  height: 80vh;
+  width: 80vw;
+  /* display: flex;
+  justify-content: center;  ***********working fine without this
   align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  max-width: 100vw;
-  min-height: 100vh;
-  background-color: black;
+  flex-direction: column; */
 }
 
 .input{
@@ -19,7 +29,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  width: 80vw;
+  width: 100%;
   height: 30vh;
   background-color: grey;
 }
@@ -32,6 +42,7 @@
   background-color: white;
   text-align: center;
   border: none;
+  outline: none;
   margin-bottom: 1rem;
 }
 
@@ -56,7 +67,7 @@
   align-items: center;
   flex-direction: column;
   min-height: 50vh;
-  width: 75vw;
+  width: 100%;
   background-color: white;
   text-align: center;
   padding: 1rem;
@@ -75,4 +86,41 @@
   background-color: black;
   color: white;
   transform: scale(1.05);
+}
+
+@media(max-width: 576px){
+
+  .container{
+    width: 100vw;
+  }
+
+  .submit{
+      padding: 1.5rem 0.5rem 0.75rem;
+  }
+}
+
+@media(max-height: 520px){
+  .pseudo-body1{
+    height: 2000px;
+  }
+
+  .container{
+    height: 2000px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .input{
+    height: 180px;
+  }
+  .input > input{
+    height: 70px;
+  }
+  .submit{
+    display: none;
+  }
+  .active{
+    display: none;
+  }
 }

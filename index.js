@@ -3,7 +3,7 @@ const app = express();
 const socketio = require("socket.io");
 const fs = require("fs");
 
-let page = fs.readFileSync('assets/innerHTML/chat_page',{encoding: 'utf-8'});
+let page = fs.readFileSync('assets/innerHTML/chat_page.html',{encoding: 'utf-8'});
 
 const server = app.listen(3000,()=>{
   console.log("server is running on 3000");
@@ -39,6 +39,7 @@ io.on("connect", (socket)=>{
       rooms[`${roomName}`] = [socket.id]
       participants[`${socket.id}`] = roomName;
       namesID[`${socket.id}`] = roomName;
+      socket.emit('connection_status', 'no-connection', "");
     }
     else{
       socket.emit('load_chat_page', "NO", "Room Already Created");
@@ -56,6 +57,10 @@ io.on("connect", (socket)=>{
         rooms[`${roomName}`].push(`${socket.id}`);
         namesID[`${socket.id}`] = roomName;
         participants[`${socket.id}`] = name;
+
+        socket.emit("connection_status", "connected", roomName);
+        // let creater = rooms[`$roomName`][0];
+        socket.broadcast.in(roomName).emit("connection_status", "connected",name);
       }
       console.log(rooms);
       console.log(participants);
