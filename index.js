@@ -2,11 +2,12 @@ const express = require("express");
 const app = express();
 const socketio = require("socket.io");
 const fs = require("fs");
+let PORT = 3000 || process.env.PORT;
 
 let page = fs.readFileSync('assets/innerHTML/chat_page.html',{encoding: 'utf-8'});
 
-const server = app.listen(3000,()=>{
-  console.log("server is running on 3000");
+const server = app.listen(PORT,()=>{
+  console.log(`server is running on ${PORT}`);
 });
 
 let rooms = {};      // object containing room name with an array of participants ID
