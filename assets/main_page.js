@@ -61,5 +61,5 @@ function joinRoom(e){
 socket.on("error", (message)=>{
   console.log("error");
   alert(message);
-  location.reload();
+  location.replace(location.href);
 });

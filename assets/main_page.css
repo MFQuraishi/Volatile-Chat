@@ -97,11 +97,13 @@
 
 @media(max-height: 520px){
   .pseudo-body1{
-    height: 2000px;
+    height: 400px;
+    position: absolute;
+    top: 0;
   }
 
   .container{
-    height: 2000px;
+    height: 400px;
     display: flex;
     justify-content: center;
     align-items: center;

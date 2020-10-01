@@ -64,9 +64,8 @@ io.on("connect", (socket)=>{
         socket.broadcast.in(roomName).emit("connection_status", "connected",name);
       }
       console.log(rooms);
-      console.log(participants);
       console.log(namesID);
-
+      console.log(participants);
     }
     catch(e){
       console.log(e);
@@ -82,7 +81,6 @@ io.on("connect", (socket)=>{
 
 socket.on("newMessage", (message)=>{
   let room = namesID[`${socket.id}`]
-  // io.sockets.in(room).emit("newMessage", message);
   socket.broadcast.in(room).emit("newMessage", message);
 });
 
@@ -95,12 +93,11 @@ socket.on("newMessage", (message)=>{
       let id = socket.id;
       let roomID = namesID[`${id}`];
 
-      console.log(`${participants[`${id}`]} left the room`);
-      console.log(roomID);
+      io.sockets.in(roomID).emit("connection_status", "other-one-left", "other one left (restart)");
+
       io.sockets.in(roomID).emit("error", "other one left");
       delete participants[id];      // deleting enteries
       delete namesID[`${id}`];
-      console.log(rooms[`${roomID}`]);
       delete rooms[`${roomID}`];
     }
     catch(e){

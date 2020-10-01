@@ -10,7 +10,6 @@ catch(e){
   console.log(e);
 }
 
-
 function sendMessage(){
   let message = document.getElementById("messageText").value;
   console.log(message);
@@ -54,5 +53,9 @@ socket.on('connection_status',(status, name)=>{
   else if(status == "connected"){
     element.style.backgroundColor = "#28df99"
     element.innerHTML = name + " connected"
+  }
+  else{
+    element.style.backgroundColor = "#ff414d"
+    element.innerHTML = name
   }
 });
